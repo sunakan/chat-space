@@ -13,20 +13,19 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string|
-|text|
-|body|
+|body|text|
 |user|integer|null: false, foreign_key: true|
 |group|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :group
-- belongs_to :group
+- belongs_to :groups
+- belongs_to :user
 
 ## Groupsテーブル
-|name|Type|Options|
+|Column|Type|Options|
 |------|----|-------|
-|body|text|null: false|
+|name|string|null: false|
 ### Association
-- has_many :users, through: :users_groups
+- has_many :users_groups
 - has_many :messages
 
 ## UsersGroupsテーブル
