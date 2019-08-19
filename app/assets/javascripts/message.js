@@ -1,33 +1,52 @@
 $(function() {
-  function buildHTML(comment){
-    var html = `<p>
-                  <strong>
-                    <a href=/users/${comment.user_id}>${comment.user_name}</a>
-                    ：
-                  </strong>
-                  ${comment.text}
-                </p>`
+  function buildHTML(message){
+    var imagehtml = message.image == null ? "" : `<img src="${message.image}" class="lower-message__image">`
+    var html = `<div class=message>
+                    <div class="upper-message">
+                      <div class="upper-message__user-name">
+                      ${message.user_name}
+                      </div>
+                      <div class="upper-message__date">
+                      ${message.created_at}
+                      </div>
+                    </div>
+                    <div class="lower-message">
+                      <p class="lower-message__content">
+                      ${message.content}
+                      </p>
+                      ${imagehtml}
+                    </div>
+                  </div> `
     return html;
   }
-  $('#new_comment').on('submit', function (e) {
+  $('#new_message').on('submit', function (e){
+    // ↑イベント発火の火元。messagesフォーム全体のID。
     e.preventDefault();
+    // ↑ブラウザ側が勝手にリクエストを送るのをキャンセル。
     var formData = new FormData(this);
     var url = $(this).attr('action');
     $.ajax({
-      url: url,
-      type: "POST",
+      url: url,           
+      type: 'POST',      // method = "POST"等
       data: formData,
-      dataType: 'json',
+      dataType: 'json',     // データの形式
       processData: false,
-      contentType: false
+      contentType: false,
+      // ↑processData:とcontentType:はajaxを送信時のデータの形を整える機能。FormDataを使用時はfalseでキャンセル。
     })
     .done(function(data){
+      console.log("--------------------うまくいくと表示");
+      console.log(data);
+      console.log("--------------------");
       var html = buildHTML(data);
-      $('.comments').append(html)
-      $('.textbox').val('')
+      $('.messages').append(html)
+      $( ".form__submit").prop( "disabled", false );
+      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      $('.form__message').val('');
+      $('.hidden').val('');
     })
     .fail(function(){
-      alert('error');
+      alert('erroraaaaaaaaaaaaaaaaaaaaaa');
     })
   })
 });

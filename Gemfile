@@ -46,7 +46,6 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'jquery-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'haml-rails'
 gem 'font-awesome-rails'
@@ -57,3 +56,12 @@ gem 'mini_magick'
 gem 'jbuilder', '~> 2.5'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'pry-rails'
+
+group :development do
+  # エラー画面をわかりやすく整形してくれる
+  gem 'better_errors'
+
+  # better_errorsの画面上にirb/pry(PERL)を表示する
+  gem 'binding_of_caller'
+end
