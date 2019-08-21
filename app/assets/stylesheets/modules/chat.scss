@@ -1,11 +1,12 @@
 .chat {
   width: calc(100% - 300px);
-  height: 100%;
-  float: right;
+  float: left;
   .header {
-    box-sizing: border-box;
     height: 100px;
     padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    overflow: scroll;
     .left-header {
       float: left;
       &__title {
@@ -39,7 +40,7 @@
     background-color: #FAFAFA;
     box-sizing: border-box;
     padding: 46px 40px 0;
-    height: calc(550px - 100px - 90px);
+    height: calc(100vh - 100px - 90px);
     overflow:scroll;
     .message {
       .upper-message {
@@ -71,6 +72,7 @@
     box-sizing: border-box;
     height: 90px;
     padding: 20px 50px 20px 40px;
+    bottom: 0;
     &__message {
       border: none;
       float: left;

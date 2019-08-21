@@ -14,7 +14,7 @@ $(function() {
                       <p class="lower-message__content">
                       ${message.content}
                       </p>
-                      ${imagehtml}
+                      <img src="${message.image}"class= 'lower-message__image'>
                     </div>
                   </div> `
     return html;
@@ -34,19 +34,17 @@ $(function() {
       contentType: false,
       // ↑processData:とcontentType:はajaxを送信時のデータの形を整える機能。FormDataを使用時はfalseでキャンセル。
     })
-    .done(function(data){
-      console.log("--------------------うまくいくと表示");
-      console.log(data);
-      console.log("--------------------");
-      var html = buildHTML(data);
-      $('.messages').append(html)
+    .done(function(message){
+      var html = buildHTML(message);
+      $('.messages').append(html);
       $( ".form__submit").prop( "disabled", false );
+      //データ受け取り後messagesの画面最下部までスクロール⬇︎
       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
       $('.form__message').val('');
       $('.hidden').val('');
     })
     .fail(function(){
-      alert('erroraaaaaaaaaaaaaaaaaaaaaa');
+      alert('error');
     })
   })
 });
