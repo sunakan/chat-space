@@ -26,7 +26,7 @@ $(function() {
     var formData = new FormData(this);
     var url = $(this).attr('action');
     $.ajax({
-      url: url,           
+      url: url,
       type: 'POST',      // method = "POST"等
       data: formData,
       dataType: 'json',     // データの形式
