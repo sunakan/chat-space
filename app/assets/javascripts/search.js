@@ -52,7 +52,7 @@ $(function () {
           $(this).parent().remove();
           appendMembers(name, user_id);
       });
-      $(document).on("click", '.user-search-remove', function () {
+      $(document).on("click", '.user_search_remove', function () {
           $(this).parent().remove();
       });
   });
