@@ -65,6 +65,7 @@ gem 'mini_magick'
 gem 'jbuilder', '~> 2.5'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'fog-aws'
 
 group :development do
   # エラー画面をわかりやすく整形してくれる
